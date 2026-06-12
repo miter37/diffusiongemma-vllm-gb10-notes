@@ -1,6 +1,8 @@
-# Running DiffusionGemma 26B A4B NVFP4 with vLLM on NVIDIA GB10
+# DiffusionGemma 26B NVFP4 on NVIDIA DGX Spark: 100+ tok/s with vLLM
 
-This repository is not a code project. It is a practical note from my local setup, written in the hope that it helps other people bring up `nvidia/diffusiongemma-26B-A4B-it-NVFP4` with vLLM.
+This repository is not a code project. It is a practical note from my NVIDIA DGX Spark setup, written in the hope that it helps other people bring up `nvidia/diffusiongemma-26B-A4B-it-NVFP4` with vLLM. In direct vLLM API testing, the model exceeded 100 tok/s for single-request generation with thinking disabled.
+
+Hardware note: this was tested on NVIDIA DGX Spark, reported by `nvidia-smi` as NVIDIA GB10.
 
 I tested the model through vLLM's OpenAI-compatible API and have also been using it through a Hermes AI Agent Telegram gateway. So far, the model has been working without major issues in that agent setup.
 
@@ -10,7 +12,7 @@ Subjectively, compared with running `Qwen3.6-35B-A3B-NVFP4` on vLLM in my enviro
 
 ```text
 Model: nvidia/diffusiongemma-26B-A4B-it-NVFP4
-GPU: NVIDIA GB10
+GPU: NVIDIA DGX Spark (NVIDIA GB10)
 vLLM version: 0.22.1rc1.dev357+g74b5964f0
 Container image: vllm/vllm-openai:gemma
 API endpoint: http://localhost:8000/v1
@@ -132,7 +134,7 @@ Median speed: 65.21 tok/s
 In short:
 
 ```text
-On NVIDIA GB10, DiffusionGemma 26B A4B NVFP4 with vLLM reached about
+On NVIDIA DGX Spark (NVIDIA GB10), DiffusionGemma 26B A4B NVFP4 with vLLM reached about
 101 tok/s for single-request generation and about 148 tok/s aggregate
 at concurrency=4, with thinking disabled for benchmark requests.
 ```
@@ -210,5 +212,5 @@ The biggest improvements came from:
 
 ## Summary
 
-This setup made DiffusionGemma 26B A4B NVFP4 practical for me on NVIDIA GB10. The model loaded successfully with vLLM, served through the OpenAI-compatible API, worked with Hermes AI Agent in everyday use, and delivered strong direct-API throughput when thinking was disabled.
+This setup made DiffusionGemma 26B A4B NVFP4 practical for me on NVIDIA DGX Spark (NVIDIA GB10). The model loaded successfully with vLLM, served through the OpenAI-compatible API, worked with Hermes AI Agent in everyday use, and delivered strong direct-API throughput when thinking was disabled.
 
